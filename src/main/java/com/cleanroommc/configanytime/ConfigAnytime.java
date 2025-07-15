@@ -47,18 +47,7 @@ public class ConfigAnytime {
             return;
         }
         try {
-            Method classLoader$findLoadedClass = ClassLoader.class.getDeclaredMethod("findLoadedClass", String.class);
-            classLoader$findLoadedClass.setAccessible(true);
-            if (classLoader$findLoadedClass.invoke(Launch.classLoader, "net.minecraftforge.fml.common.Loader") != null) {
-                if (!Loader.instance().hasReachedState(LoaderState.PREINITIALIZATION)) {
-                    // Early
-                    $register(configClass);
-                }
-            } else {
-                // Early
-                $register(configClass);
-            }
-            // Late, nothing should be done
+            $register(configClass);
         } catch (Throwable t) {
             throw new RuntimeException(t);
         }
